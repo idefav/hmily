@@ -18,6 +18,7 @@
 package com.hmily.tcc.common.config;
 
 import com.hmily.tcc.common.enums.RepositorySupportEnum;
+import com.hmily.tcc.common.enums.SerializeEnum;
 import lombok.Data;
 
 /**
@@ -39,7 +40,7 @@ public class TccConfig {
      * 提供不同的序列化对象.
      * {@linkplain com.hmily.tcc.common.enums.SerializeEnum}
      */
-    private String serializer = "kryo";
+    private SerializeEnum serializer = SerializeEnum.KRYO;
 
     /**
      * 任务调度线程大小.
@@ -65,7 +66,7 @@ public class TccConfig {
      * 补偿存储类型.
      * {@linkplain RepositorySupportEnum}
      */
-    private String repositorySupport = "db";
+    private RepositorySupportEnum repositorySupport =RepositorySupportEnum.DB;
 
     /**
      * disruptor  bufferSize.

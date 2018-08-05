@@ -8,25 +8,25 @@ server:
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.1.68:3306/tcc_account?useUnicode=true&characterEncoding=utf8
-        username: xiaoyu
-        password: Wgj@555888
+        url: jdbc:mysql://localhost:3306/tcc_account?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: 111111
     application:
       name: account-service
-
 hmily:
-    tcc :
-        serializer : kryo
-        recoverDelayTime : 128
-        retryMax : 30
-        scheduledDelay : 128
-        scheduledThreadMax :  10
-        repositorySupport : db
-        tccDbConfig :
-                 driverClassName  : com.mysql.jdbc.Driver
-                 url :  jdbc:mysql://192.168.1.68:3306/tcc?useUnicode=true&amp;characterEncoding=utf8
-                 username : xiaoyu
-                 password : Wgj@555888
+  tcc:
+    serializer: kryo
+    recoverDelayTime: 128
+    retryMax: 30
+    scheduledDelay: 128
+    scheduledThreadMax:  10
+    repositorySupport: db
+    tcc-db-config:
+      url:  jdbc:mysql://localhost:3306/tcc?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: 111111
+      driver-class-name: com.mysql.jdbc.Driver
+
 
        # repositorySupport : redis
        #         hostName  : 192.168.1.68

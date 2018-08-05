@@ -118,6 +118,8 @@ public class TccDbConfig {
     /**
      * You can use a existing DataSource or generate a new DataSource based on the configuration.
      */
-    private DataSource dataSource;
+//    private DataSource dataSource;
+
+    private boolean useDefaultDataSource=false;
 
 }

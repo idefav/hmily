@@ -28,12 +28,14 @@ import com.hmily.tcc.common.exception.TccException;
 import com.hmily.tcc.common.serializer.ObjectSerializer;
 import com.hmily.tcc.common.utils.DbTypeUtils;
 import com.hmily.tcc.common.utils.RepositoryPathUtils;
+import com.hmily.tcc.core.helper.SpringBeanUtils;
 import com.hmily.tcc.core.helper.SqlHelper;
 import com.hmily.tcc.core.spi.CoordinatorRepository;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -196,8 +198,8 @@ public class JdbcCoordinatorRepository implements CoordinatorRepository {
     @Override
     public void init(final String modelName, final TccConfig txConfig) {
         final TccDbConfig tccDbConfig = txConfig.getTccDbConfig();
-        if (tccDbConfig.getDataSource() != null) {
-            dataSource = tccDbConfig.getDataSource();
+        if (tccDbConfig.isUseDefaultDataSource()) {
+            dataSource = SpringBeanUtils.getInstance().getBean(DataSource.class);
         } else {
             HikariDataSource hikariDataSource = new HikariDataSource();
             hikariDataSource.setJdbcUrl(tccDbConfig.getUrl());
@@ -213,7 +215,14 @@ public class JdbcCoordinatorRepository implements CoordinatorRepository {
             if (tccDbConfig.getDataSourcePropertyMap() != null && !tccDbConfig.getDataSourcePropertyMap().isEmpty()) {
                 tccDbConfig.getDataSourcePropertyMap().forEach(hikariDataSource::addDataSourceProperty);
             }
-            dataSource = hikariDataSource;
+            try {
+                Connection connection = hikariDataSource.getConnection();
+                dataSource = hikariDataSource;
+            } catch (Exception e) {
+                logger.warn("can not connect to tcc database and use default business database");
+                dataSource = SpringBeanUtils.getInstance().getBean(DataSource.class);
+            }
+
         }
         this.tableName = RepositoryPathUtils.buildDbTableName(modelName);
 //        //save current database type

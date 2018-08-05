@@ -19,9 +19,10 @@
 
 package com.hmily.tcc.spring.boot.starter.parent.configuration;
 
+import com.hmily.tcc.common.config.TccDbConfig;
 import com.hmily.tcc.core.bootstrap.HmilyTransactionBootstrap;
 import com.hmily.tcc.core.service.HmilyInitService;
-import com.hmily.tcc.spring.boot.starter.parent.config.TccConfigProperties;
+import com.hmily.tcc.spring.boot.starter.parent.config.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +39,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableConfigurationProperties
 @ComponentScan(basePackages = {"com.hmily.tcc"})
 public class HmilyAutoConfiguration {
-
 
     private final TccConfigProperties tccConfigProperties;
 

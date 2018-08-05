@@ -20,6 +20,9 @@
 package com.hmily.tcc.spring.boot.starter.parent.config;
 
 import com.hmily.tcc.common.config.TccConfig;
+import com.hmily.tcc.common.config.TccDbConfig;
+import com.hmily.tcc.common.enums.SerializeEnum;
+import com.hmily.tcc.spring.boot.starter.parent.HmilyTccStarterConstants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +32,6 @@ import org.springframework.stereotype.Component;
  * @author xiaoyu(Myth)
  */
 @Component
-@ConfigurationProperties(prefix = "hmily.tcc")
+@ConfigurationProperties(prefix = HmilyTccStarterConstants.CONFIG_PREFIX)
 public class TccConfigProperties extends TccConfig {
 }

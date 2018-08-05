@@ -33,19 +33,19 @@
     <context:component-scan base-package="com.hmily.tcc.*"/>
     <aop:aspectj-autoproxy expose-proxy="true"/>
     <bean id="hmilyTransactionBootstrap" class="com.hmily.tcc.core.bootstrap.HmilyTransactionBootstrap">
-        <property name="serializer" value="kryo"/>
+        <property name="serializer" value="KRYO"/>
         <property name="recoverDelayTime" value="120"/>
         <property name="retryMax" value="3"/>
         <property name="scheduledDelay" value="120"/>
         <property name="scheduledThreadMax" value="4"/>
-        <property name="repositorySupport" value="db"/>
+        <property name="repositorySupport" value="DB"/>
         <property name="tccDbConfig">
             <bean class="com.hmily.tcc.common.config.TccDbConfig">
                 <property name="url"
-                          value="jdbc:mysql://192.168.1.68:3306/tcc?useUnicode=true&amp;characterEncoding=utf8"/>
+                          value="jdbc:mysql://localhost:3306/tcc?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
                 <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-                <property name="username" value="xiaoyu"/>
-                <property name="password" value="Wgj@555888"/>
+                <property name="username" value="root"/>
+                <property name="password" value="111111"/>
             </bean>
         </property>
     </bean>
